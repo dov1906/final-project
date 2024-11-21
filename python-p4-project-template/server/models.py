@@ -30,26 +30,26 @@ class User(db.Model, SerializerMixin):
         raise ValueError(f"{column} must be a valid email address!")
 
 
-class Trip(db.Model, SerializerMixin):
-    __tablename__ = "trips"
+# class Trip(db.Model, SerializerMixin):
+#     __tablename__ = "trips"
 
-    id = db.Column(db.Integer, primary_key=True)
-    name = db.Column(db.String, nullable=False)
-    destination = db.Column(db.String, nullable=False)
-    start_date = db.Column(db.Date, nullable=False)
-    end_date = db.Column(db.Date, nullable=False)
+#     id = db.Column(db.Integer, primary_key=True)
+#     name = db.Column(db.String, nullable=False)
+#     destination = db.Column(db.String, nullable=False)
+#     start_date = db.Column(db.Date, nullable=False)
+#     end_date = db.Column(db.Date, nullable=False)
 
-    user_id = db.Column(db.Integer, db.ForeignKey('users.id'), nullable=False)
-    user = db.relationship('User', back_populates='trips')
+#     user_id = db.Column(db.Integer, db.ForeignKey('users.id'), nullable=False)
+#     user = db.relationship('User', back_populates='trips')
 
-    activities = db.relationship('Activity', back_populates='trip', cascade="all, delete-orphan")
-    expenses = db.relationship('Expense', back_populates='trip', cascade="all, delete-orphan")
+#     activities = db.relationship('Activity', back_populates='trip', cascade="all, delete-orphan")
+#     expenses = db.relationship('Expense', back_populates='trip', cascade="all, delete-orphan")
 
-    @validates('name', 'destination')
-    def validate_strings(self, column, value):
-        if isinstance(value, str) and len(value) >= 3:
-            return value
-        raise ValueError(f"{column} must be a string at least 3 characters long!")
+#     @validates('name', 'destination')
+#     def validate_strings(self, column, value):
+#         if isinstance(value, str) and len(value) >= 3:
+#             return value
+#         raise ValueError(f"{column} must be a string at least 3 characters long!")
 
 
 class Activity(db.Model, SerializerMixin):
