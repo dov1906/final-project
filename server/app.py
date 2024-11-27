@@ -6,7 +6,7 @@
 from flask import request, make_response, request, jsonify
 from flask_restful import Resource
 import requests
-# Local imports
+# Local imports,
 from config import app, db, api, FLIGHT_API_KEY
 
 # Add your model imports
